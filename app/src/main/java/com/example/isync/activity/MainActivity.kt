@@ -176,7 +176,6 @@ class MainActivity : AppCompatActivity() {
             uploadTask.addOnSuccessListener {
                 submitData(imagename,type,position)
             }.addOnFailureListener { e ->
-
                 Toast.makeText(this,"fail $e",Toast.LENGTH_LONG).show()
 
             }
@@ -195,6 +194,7 @@ class MainActivity : AppCompatActivity() {
         val childRef: StorageReference = storageReference.child(imageName)
         childRef.downloadUrl.addOnSuccessListener {
             imageList.set(position,it)
+
         }
 
         statusList.set(position,"online")
@@ -355,10 +355,10 @@ class MainActivity : AppCompatActivity() {
                             selectIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                         }else{
 
-                                selectIntent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-                                selectIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                                selectIntent = Intent(Intent.ACTION_PICK)
+//                                selectIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 //                                selectIntent.addCategory(Intent.CATEGORY_OPENABLE)
-                                selectIntent.type = "*/*"
+                                selectIntent.type = "image/*"
                                 val extraMimeType = arrayOf("image/png", "image/jpg", "image/jpeg","image/heif")
                                 selectIntent.putExtra(Intent.EXTRA_MIME_TYPES,extraMimeType)
 
