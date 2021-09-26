@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/almost_white_round_top_left_angle.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/background_color_round_angle.xml" value="0.325" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/background_transparent_round_border.xml" value="0.325" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/black_shadow_round_angle.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/black_shadow_top_round_angle.xml" value="0.2625" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/component_side_menu.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/gray_round_angle_border.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_app_foreground.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_app_icon.xml" value="0.1859375" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_close_dark.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_close_white.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_delete_btn.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_download_btn.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_img_status_offline.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_img_status_online.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_img_status_sync.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_information.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_launcher_background.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_logout.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_menu.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_offline.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_online.xml" value="0.34010416666666665" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/main_color_round_angle.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/main_round_angle_border.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/white_round_angle.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/white_round_top_left_angle.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/activity_preview_image.xml" value="0.33" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/activity_reset_password.xml" value="0.22" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/activity_signup.xml" value="0.33" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/component_custom_tools_bar.xml" value="0.25" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/component_side_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/dialog_bottom_get_image_solution.xml" value="0.34595959595959597" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/dialog_one_button.xml" value="0.33" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/dialog_two_button.xml" value="0.36666666666666664" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/view_image_holder.xml" value="0.20520833333333333" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/view_image_slider.xml" value="0.23385416666666667" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/view_upload_image.xml" value="1.1" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/mipmap-anydpi-v26/ic_app_round.xml" value="0.1859375" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

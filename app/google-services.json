@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "717907485271",
+    "firebase_url": "https://isync-3c487-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "isync-3c487",
+    "storage_bucket": "isync-3c487.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717907485271:android:30ff88cd79b83cd8cff912",
+        "android_client_info": {
+          "package_name": "com.example.isync"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717907485271-q0651fl3rt80ijg5kivpkqoqn7phq2in.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM14zxe38DDPLP_Ff0wi7opaTETXKgBso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717907485271-q0651fl3rt80ijg5kivpkqoqn7phq2in.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

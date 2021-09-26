@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="116dp"
+        android:layout_height="116dp">
+        <ImageView
+            android:id="@+id/view_status"
+            android:layout_width="106.5dp"
+            android:layout_height="106.5dp"
+            android:src="@drawable/ic_img_status_online"
+            app:layout_constraintTop_toTopOf="@id/card_img"
+            app:layout_constraintBottom_toBottomOf="@id/card_img"
+            app:layout_constraintStart_toStartOf="@id/card_img"
+            app:layout_constraintEnd_toEndOf="@id/card_img"
+            android:elevation="5dp"
+            android:paddingEnd="0.5dp"
+            android:paddingStart="-0.5dp"
+            />
+        <TextView
+            android:id="@+id/view_image_type"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="jpg"
+            android:textAlignment="center"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/white"
+            android:background="@drawable/black_shadow_round_angle"
+            android:textSize="12dp"
+            android:elevation="10dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintStart_toStartOf="@id/card_img"
+            app:layout_constraintEnd_toEndOf="@id/card_img"
+            app:layout_constraintBottom_toBottomOf="@id/card_img"
+            />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="10dp">
+            <ImageView
+                android:id="@+id/view_upload_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+
+                />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
