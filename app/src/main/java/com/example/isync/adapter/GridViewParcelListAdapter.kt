@@ -68,7 +68,7 @@ class GridViewParcelListAdapter(
 
     override fun notifyDataSetChanged() {
         super.notifyDataSetChanged()
-        Log.d("update adapter", "notifyDataSetChanged: active")
+//        Log.d("update adapter", "notifyDataSetChanged: active")
     }
 
 

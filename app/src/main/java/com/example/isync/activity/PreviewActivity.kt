@@ -95,7 +95,7 @@ class PreviewActivity : AppCompatActivity() {
                 positionOffsetPixels: Int
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                Log.d("preview", "onCreate: $position")
+//                Log.d("preview", "onCreate: $position")
                 onSetImageDescription(position)
             }
         })
@@ -133,7 +133,7 @@ class PreviewActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun onDeleteImage(index: Int, status: String) {
-        Log.d("delete", "onDeleteImage: $status")
+//        Log.d("delete", "onDeleteImage: $status")
         if (status == "online"){
             storageReference = firebaseStorage.getReferenceFromUrl(imageList[index].toString())
             databaseReference = firebaseDatabase.getReference("images/${firebaseAuth.currentUser!!.uid}")

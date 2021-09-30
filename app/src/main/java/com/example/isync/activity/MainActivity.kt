@@ -6,6 +6,7 @@ import android.content.*
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -17,6 +18,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.heifwriter.HeifWriter
@@ -44,6 +46,13 @@ import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
 import java.time.LocalDateTime
+import android.content.pm.PackageManager
+import androidx.core.content.FileProvider
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import java.io.IOException
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var parcelAdapter: GridViewParcelListAdapter
@@ -60,14 +69,12 @@ class MainActivity : AppCompatActivity() {
     private val CAMERA_REQUEST = 200
     private val GALLERY_REQUEST = 100
     private val PREVIEW_REQUEST = 300
-
     lateinit var firebaseAuth: FirebaseAuth
     lateinit var firebaseDatabase: FirebaseDatabase
     lateinit var firebaseStorage: FirebaseStorage
     lateinit var storageReference : StorageReference
     lateinit var databaseReference: DatabaseReference
     private lateinit var responseImage : MutableList<FirebaseGetImagesModel>
-
 
 
     var progressDialog : ProgressDialog? = null
@@ -85,8 +92,6 @@ class MainActivity : AppCompatActivity() {
         binding.menuCloseBtn.setOnClickListener {
             onSetMainMenu(false)
         }
-
-
 
         binding.addBtn.setOnClickListener {
             val alert = BottomSelectGetImageSolutions()
@@ -125,11 +130,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainAccount.text = firebaseAuth.currentUser!!.email
 
+
         // set View
         onSetMainMenu(false)
 
-        callNetworkConnection()
+       runBlocking { callNetworkConnection() }
+
+
+
         // get cache image
+
 
         val cR : ContentResolver = this.contentResolver
         val mime : MimeTypeMap = MimeTypeMap.getSingleton()
@@ -162,13 +172,15 @@ class MainActivity : AppCompatActivity() {
         parcelAdapter.notifyDataSetChanged()
     }
 
-    private fun UploadImage(filePath : Uri,type:String,position: Int){
+    private suspend fun UploadImage(filePath : Uri,type:String,position: Int){
+
+//        Log.d("img", "UploadImage: upload")
 
             val imagename = "upload_"+LocalDateTime.now().toString()+".$type"
             val childRef: StorageReference = storageReference.child(imagename.toString())
-        val reduceUri : Uri
+            val reduceUri : Uri
             if(type!="heic") {
-                reduceUri = imageResize(filePath, type)
+                reduceUri =  imageResizeNew(filePath, type)
             }else{
                 reduceUri = filePath
             }
@@ -176,9 +188,11 @@ class MainActivity : AppCompatActivity() {
             uploadTask.addOnSuccessListener {
                 submitData(imagename,type,position)
             }.addOnFailureListener { e ->
-                Toast.makeText(this,"fail $e",Toast.LENGTH_LONG).show()
-
+              Toast.makeText(this,"Upload Fail",Toast.LENGTH_SHORT).show()
+//                Log.d("Upload", "UploadImage: Fail")
             }
+
+
 
 
     }
@@ -305,7 +319,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun callNetworkConnection() {
+    private suspend fun callNetworkConnection() {
         checkNetworkConnection = CheckNetworkConnection(application)
         checkNetworkConnection.observe(this,{ isConnected ->
             onSetNetworkStatus(isConnected)
@@ -318,11 +332,17 @@ class MainActivity : AppCompatActivity() {
                 if (statusList.contains("offline")){
                     for (i in 0..statusList.size-1){
                         if(statusList[i] == "offline"){
+//                            Log.d("img", "for loop detect")
                             var type : String? = mime.getExtensionFromMimeType(cR.getType(imageList[i]))
                             if (type == null){
                                 type = "heic"
                             }
-                            UploadImage(imageList[i], type,i )
+                            runBlocking {
+//                                Log.d("img", "blocking")
+                                    UploadImage(imageList[i], type,i )
+                                delay(500)
+                            }
+
                         }
                     }
                 }
@@ -343,7 +363,6 @@ class MainActivity : AppCompatActivity() {
     private fun onSetPermission(selecter:Int) {
         Dexter.withActivity(this).withPermissions(
             Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
         ).withListener(object : MultiplePermissionsListener {
             override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
@@ -356,7 +375,7 @@ class MainActivity : AppCompatActivity() {
                         }else{
 
                                 selectIntent = Intent(Intent.ACTION_PICK)
-//                                selectIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                                selectIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
 //                                selectIntent.addCategory(Intent.CATEGORY_OPENABLE)
                                 selectIntent.type = "image/*"
                                 val extraMimeType = arrayOf("image/png", "image/jpg", "image/jpeg","image/heif")
@@ -367,6 +386,7 @@ class MainActivity : AppCompatActivity() {
                         startActivityForResult(selectIntent,selecter)
                     }
                     if (report.isAnyPermissionPermanentlyDenied){
+//                        Log.d("PERMISSION", "onPermissionsChecked: denie")
                         onSetOpenSettingDialog()
                     }
 
@@ -457,7 +477,6 @@ class MainActivity : AppCompatActivity() {
                }
             }
 
-
         }
     }
 
@@ -534,52 +553,43 @@ class MainActivity : AppCompatActivity() {
         binding.menuHeicCount.text = heicCount.toString()
     }
 
-    private fun imageResize(imageUri: Uri,type: String) : Uri{
-//       1mb = 1,048,576 byte
+    private fun imageResizeNew(imageUri: Uri,type: String) : Uri{
         val max_size : Int = 1048576 // 262144  <- // 1mb/rgba
 
         val fullSizeBitmap : Bitmap = MediaStore.Images.Media.getBitmap(contentResolver,imageUri)
         val reduceBitmap = ImageResizer().reduceBitmapSize(fullSizeBitmap,max_size)
-        val desc = "${Environment.getExternalStorageDirectory()}${File.separator}/reduced_file.$type"
-
-        val file:File = File(desc)
-        file.createNewFile()
-        val bos : ByteArrayOutputStream = ByteArrayOutputStream()
-        if (type == "png"){
-            reduceBitmap.compress(Bitmap.CompressFormat.PNG,80,bos)
-        }else {
-            reduceBitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos)
+        if(savePhotoToInternalStorage("reduced_file",reduceBitmap,type)){
+            var reduceUri : Uri = Uri.parse("")
+            val file = filesDir.listFiles()
+            file?.filter { it.canRead() && it.isFile && it.name.equals(("reduced_file.$type")) }?.map {
+                reduceUri = Uri.fromFile(it)
+            }
+            return reduceUri
+        }else{
+            return Uri.parse("")
         }
-//        }else{
-//            try {
-//                HeifWriter.Builder(desc,fullSizeBitmap.width,fullSizeBitmap.height,HeifWriter.INPUT_MODE_BITMAP)
-//                    .setQuality(80)
-//                    .build().run {
-//                        start()
-//                        addBitmap(fullSizeBitmap)
-//                        stop(0)
-//                        close()
-//                    }
-//
-//            }catch (e:Exception){
-//                e.printStackTrace()
-//
-//            }
-//        }
-
-        val bitmapdata = bos.toByteArray()
-        try {
-            val fos : FileOutputStream = FileOutputStream(file)
-            fos.write(bitmapdata)
-            fos.flush()
-            fos.close()
-
-            return Uri.fromFile(file)
-        }catch (e : Exception){
-            e.printStackTrace()
-        }
-        return Uri.fromFile(file)
-
     }
+
+    private fun savePhotoToInternalStorage(filename:String, bmp:Bitmap,type : String) : Boolean{
+        return try {
+            openFileOutput("$filename.$type", MODE_PRIVATE).use {
+                if (type == "jpg") {
+                    if (!bmp.compress(Bitmap.CompressFormat.JPEG, 80, it)) {
+                        throw IOException("Couldn't save bitmap")
+                    }
+                }else{
+                    if (!bmp.compress(Bitmap.CompressFormat.PNG, 80, it)) {
+                        throw IOException("Couldn't save bitmap")
+                    }
+                }
+            }
+            true
+        }catch (e:Exception){
+            e.printStackTrace()
+            false
+        }
+    }
+
+
 
 }

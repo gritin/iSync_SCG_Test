@@ -27,6 +27,7 @@
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/ic_online.xml" value="0.34010416666666665" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/main_color_round_angle.xml" value="0.22135416666666666" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/main_round_angle_border.xml" value="0.22135416666666666" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/red_round_angle_border.xml" value="0.20885416666666667" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/white_round_angle.xml" value="0.22135416666666666" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/drawable/white_round_top_left_angle.xml" value="0.22135416666666666" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/activity_login.xml" value="0.33" />
@@ -37,6 +38,7 @@
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/component_custom_tools_bar.xml" value="0.25" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/component_side_menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/dialog_bottom_get_image_solution.xml" value="0.34595959595959597" />
+        <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/dialog_loading.xml" value="0.2" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/dialog_one_button.xml" value="0.33" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/dialog_two_button.xml" value="0.36666666666666664" />
         <entry key="..\:/Coding/SCG_Test_APP/app/src/main/res/layout/view_image_holder.xml" value="0.20520833333333333" />
